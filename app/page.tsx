@@ -1,48 +1,31 @@
-import { obtenerTareas } from "@/lib/tareas";
-import { TareaForm } from "@/app/gestor-tareas/tareaForm";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { obtenerTareas } from "@/lib/tareas-prisma"
+import { TareaForm } from "./gestor-tareas/TareaForm"
 
 export default async function Page() {
-  const tareas = await obtenerTareas();
+  const tareas = await obtenerTareas()
 
   return (
-    <main className="flex flex-col gap-10">
-      <h1 className="text-2xl mx-auto mt-5">Gestor de tareas</h1>
+    <main>
+      <h1>Gestor de tareas con Prisma</h1>
 
       <TareaForm />
 
-      <Table>
-        <TableCaption> Tareas Guardadas </TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead> Titulo </TableHead>
-            <TableHead> Descripción </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {tareas.map((tarea) => (
-            <TableRow key={tarea.id}>
-              <TableCell>{tarea.titulo}</TableCell>
-              <TableCell>{tarea.descripcion}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell>Total</TableCell>
-            <TableCell> {tareas.length} </TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+      <section>
+        <h2>Tareas guardadas</h2>
+
+        {tareas.length === 0 ? (
+          <p>Todavía no hay tareas.</p>
+        ) : (
+          <ul>
+            {tareas.map((tarea) => (
+              <li key={tarea.id}>
+                <strong>{tarea.titulo}</strong>
+                <p>{tarea.descripcion}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </main>
-  );
+  )
 }
