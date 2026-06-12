@@ -5,8 +5,8 @@ export default async function Page() {
   const tareas = await obtenerTareas()
 
   return (
-    <main>
-      <h1>Gestor de tareas con Prisma</h1>
+    <main className="flex flex-col gap-10">
+      <h1 className="text-2xl mx-auto text-center">Gestor de tareas con Prisma</h1>
 
       <TareaForm />
 

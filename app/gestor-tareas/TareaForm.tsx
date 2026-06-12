@@ -1,19 +1,23 @@
-import { crearTarea } from "./actions"
+import { crearTarea } from "./actions";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export function TareaForm() {
   return (
-    <form action={crearTarea}>
-      <label>
+    <form className="flex flex-col gap-10" action={crearTarea}>
+      <Label>
         Título
-        <input name="titulo" />
-      </label>
+        <Input name="titulo" />
+      </Label>
 
-      <label>
+      <Label>
         Descripción
-        <textarea name="descripcion" />
-      </label>
+        <Textarea name="descripcion" />
+      </Label>
 
-      <button type="submit">Guardar tarea</button>
+      <Button>Guardar tarea</Button>
     </form>
-  )
+  );
 }
