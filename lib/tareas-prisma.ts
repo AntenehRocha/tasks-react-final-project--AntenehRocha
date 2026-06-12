@@ -1,11 +1,11 @@
-import prisma from "@/lib/prisma"
+import { prisma } from "@/lib/prisma";
 
 export async function obtenerTareas() {
   return prisma.tarea.findMany({
     orderBy: {
       id: "desc",
     },
-  })
+  });
 }
 
 export async function insertarTarea(titulo: string, descripcion: string) {
@@ -14,5 +14,5 @@ export async function insertarTarea(titulo: string, descripcion: string) {
       titulo,
       descripcion,
     },
-  })
+  });
 }
