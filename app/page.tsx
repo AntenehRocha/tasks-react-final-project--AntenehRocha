@@ -4,13 +4,14 @@ import { useState } from "react";
 import { Tarea } from "@/app/modulos/tarea";
 import { FormCrearTarea } from "@/app/modulos/formCrearTarea";
 import { TablaTareas } from "@/app/modulos/tablaTareas";
+import { guardarTareas } from "./acciones";
 
 export default function Home() {
   const [tareas, setTareas] = useState<Tarea[]>([]);
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
-  const crearTarea = () => {
+  const crearTarea = async () => {
     if (!nombre.trim()) return;
 
     const nuevaTarea: Tarea = {
@@ -19,6 +20,14 @@ export default function Home() {
       descripcion: descripcion.trim(),
       completada: false,
     };
+
+    sessionStorage.setItem("tareaActual", JSON.stringify(nuevaTarea));
+
+    let tareaActual = sessionStorage.getItem("tareaActual");
+
+    console.log(tareaActual);
+
+    await guardarTareas(nuevaTarea);
 
     setTareas([...tareas, nuevaTarea]);
     setNombre("");
