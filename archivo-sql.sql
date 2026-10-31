@@ -1,8 +1,10 @@
 CREATE DATABASE gestor_tareas;
 
+\c gestor_tareas
+
 CREATE TABLE tareas (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  titulo VARCHAR(100) NOT NULL,
-  descripcion TEXT NOT NULL,
-  creada_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    creada_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
